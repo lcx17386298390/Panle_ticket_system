@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../myCSS/login2.css" type="text/css">
+    <title>用户登录</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/3.0.5/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>用户登录页面</h1>
+        <span th:text="${loginmes}"></span>
+        <form action="/login" method="post">
+            <table>
+                <tr>
+                    <td>用户名：</td>
+                    <td><input type="text" name="username" class="tdStyle" th:value="${userName}"></td>
+                </tr>
+                <tr>
+                    <div class="class1"></div>
+                </tr>
+                <tr>
+                    <td>密码：</td>
+                    <td><input type="password" name="userpaw" class="tdStyle" th:value="${userPaw}"></td>
+                </tr>
+            </table>
+            <input type="submit" class="btn1" value="登录">
+<!--            <button class="btn2" v-on:click="registered">注册</button>-->
+            <input type="button" class="btn2" v-on:click="registered" value="注册">
+        </form>
+    </div>
+    <div class="loginClass1"></div>
+
+    <script>
+        const app = {
+            data(){
+                return{
+                }
+            },
+            methods:{
+                registered(){
+                    window.location.href="/registered"
+                }
+            }
+        }
+        Vue.createApp(app).mount('#app')
+    </script>
+</body>
+
+</html>

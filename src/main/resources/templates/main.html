@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../myCSS/main.css" type="text/css">
+    <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+    <title>购票系统</title>
+</head>
+<body>
+    <div class="mainDiv1">
+        出发地：<input type="text" value="上海">
+        目的地：<input type="text" value="莫斯科">
+        出发日期<input type="date" class="dateClass">
+        <div>
+            乘客类型<br>成人<input type="radio" name="people" value="big">
+                儿童<input type="radio" name="people" value="small ">
+        </div>
+        <button onclick="search()">搜索</button>
+    </div>
+    <script>
+        let date = new Date()
+        let dateClass = $('.dateClass')
+        let yyyy = date.getFullYear()
+        let MM = (date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1)
+        let dd = date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate()
+        let curDay = yyyy + '-' + MM + '-' + dd;
+        dateClass.val(curDay)
+        dateClass.change(function(){
+            console.log($('.dateClass').val())
+        })
+        function search(){
+            window.location.href="search.html";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+#app{
+    position: absolute;
+    left: 40%;
+    top:10%;
+    z-index: 999999;
+}
+.loginClass1{
+    width: 244px;
+    height: 220px;
+    position: absolute;
+    left: 40%;
+    top:10%;
+    background-image: url("../myImages/c995d143ad4bd113661f54d658afa40f4afb0507.jpg");
+    background-size: cover;
+    opacity: 0.5;
+}
+.btn1{
+    margin-left: 30px;
+}
+.btn2{
+    margin-top: 30px;
+    margin-left: 80px;
+}
+.tdStyle{
+    height: 25px;
+}
+h1{
+    text-align: center;
+}
+span{
+    position: absolute;
+    left: 25px;
+    top:64px;
+    color: red;
+}

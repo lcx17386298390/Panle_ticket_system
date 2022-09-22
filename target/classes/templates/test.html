@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+<style>
+  input[ty]
+</style>
+<body>
+<label>
+  <span>选择日期</span>
+  <input type="date" class="measureDate" placeholder="请选择日期">
+</label>
+<script type="text/javascript">
+  let date = new Date()
+  let yyyy = date.getFullYear()
+  let MM = (date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1)
+  let dd = date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate()
+
+  let curDay = yyyy + '-' + MM + '-' + dd;
+  $('.measureDate').val(curDay)
+  console.log(date)
+</script>
+</body>
+
+</html>

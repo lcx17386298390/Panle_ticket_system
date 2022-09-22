@@ -28,7 +28,8 @@
         let curDay = yyyy + '-' + MM + '-' + dd;
         dateClass.val(curDay)
         dateClass.change(function(){
-            console.log($('.dateClass').val())
+            console.log(dateClass.val())
+            console.log(dateClass.val().type)
         })
         function search(){
             window.location.href="search.html";

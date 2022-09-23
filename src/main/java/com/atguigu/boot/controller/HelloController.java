@@ -63,4 +63,11 @@ public class HelloController {
     public String regSuccess(){
         return "login";
     }
+
+    @GetMapping("/search")
+    public String searchFun(@RequestParam("originValue")String originValue,
+                            @RequestParam("destinationValue")String destinationValue ,
+                            @RequestParam("passengersType")String passengersType){
+
+    }
 }

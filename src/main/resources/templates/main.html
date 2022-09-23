@@ -6,18 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../myCSS/main.css" type="text/css">
     <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+    <script src="https://cdn.staticfile.org/vue/3.0.5/vue.global.js"></script>
     <title>购票系统</title>
 </head>
 <body>
-    <div class="mainDiv1">
-        出发地：<input type="text" value="上海">
-        目的地：<input type="text" value="莫斯科">
-        出发日期<input type="date" class="dateClass">
+    <div class="mainDiv1" id="app">
+        出发地：<input type="text" v-model="originValue">
+        目的地：<input type="text" v-model="destinationValue">
+        出发日期：<input type="date" class="dateClass">
         <div>
-            乘客类型<br>成人<input type="radio" name="people" value="big">
+            乘客类型<br>成人<input type="radio" name="people" value="big" v-model="passengersType">
                 儿童<input type="radio" name="people" value="small ">
         </div>
-        <button onclick="search()">搜索</button>
+        <button @click="search">搜索</button>
     </div>
     <script>
         let date = new Date()
@@ -28,11 +29,27 @@
         let curDay = yyyy + '-' + MM + '-' + dd;
         dateClass.val(curDay)
         dateClass.change(function(){
-            console.log($('.dateClass').val())
+            console.log(dateClass.val())
+            console.log(dateClass.val().type)
         })
-        function search(){
-            window.location.href="search.html";
+        // function search(){
+        //     window.location.href="search"
+        // }
+        const app = {
+            data(){
+                return{
+                    originValue: "上海",
+                    destinationValue: "莫斯科",
+                    passengersType: "big"
+                }
+            },
+            methods: {
+                search: function(){
+                    window.location.href="search?originValue="+this.originValue+"&destinationValue="+this.destinationValue+"&passengersType="+this.passengersType;
+                }
+            }
         }
+        Vue.createApp(app).mount("#app");
     </script>
 </body>
 

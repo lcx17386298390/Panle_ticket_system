@@ -10,9 +10,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @Mapper
 public interface UserMapper {
 
-    @Select("select * from test2 where name=#{name}")
+    @Select("select * from user where username=#{name}")
     User findUser(String name);
 
-    @Select("insert into test2(name,paw) values (#{username},#{userpaw})")
+    @Select("insert into user(username,userpaw) values (#{username},#{userpaw})")
     void addUser(String username, String userpaw);
 }

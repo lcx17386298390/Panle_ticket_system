@@ -7,50 +7,62 @@
     <link rel="stylesheet" href="../myCSS/main.css" type="text/css">
     <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
     <script src="https://cdn.staticfile.org/vue/3.0.5/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>购票系统</title>
 </head>
 <body>
-    <div class="mainDiv1" id="app">
-        出发地：<input type="text" v-model="originValue">
-        目的地：<input type="text" v-model="destinationValue">
-        出发日期：<input type="date" class="dateClass">
-        <div>
-            乘客类型<br>成人<input type="radio" name="people" value="big" v-model="passengersType">
-                儿童<input type="radio" name="people" value="small ">
-        </div>
-        <button @click="search">搜索</button>
+<div class="mainDiv1" id="app">
+    出发地：<input type="text" v-model="originValue">
+    目的地：<input type="text" v-model="destinationValue">
+    出发日期：<input type="date" class="dateClass">
+    <div>
+        乘客类型<br>成人<input type="radio" name="people" value="big" v-model="passengersType">
+        儿童<input type="radio" name="people" value="small" v-model="passengersType">
     </div>
-    <script>
-        let date = new Date()
-        let dateClass = $('.dateClass')
-        let yyyy = date.getFullYear()
-        let MM = (date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1)
-        let dd = date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate()
-        let curDay = yyyy + '-' + MM + '-' + dd;
-        dateClass.val(curDay)
-        dateClass.change(function(){
-            console.log(dateClass.val())
-            console.log(dateClass.val().type)
-        })
-        // function search(){
-        //     window.location.href="search"
-        // }
-        const app = {
-            data(){
-                return{
-                    originValue: "上海",
-                    destinationValue: "莫斯科",
-                    passengersType: "big"
-                }
-            },
-            methods: {
-                search: function(){
-                    window.location.href="search?originValue="+this.originValue+"&destinationValue="+this.destinationValue+"&passengersType="+this.passengersType;
-                }
+    <button @click="search">搜索</button>
+</div>
+<script>
+    let date = new Date()
+    let dateClass = $('.dateClass')
+    let yyyy = date.getFullYear()
+    let MM = (date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1)
+    let dd = date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate()
+    let curDay = yyyy + '-' + MM + '-' + dd;
+    dateClass.val(curDay)
+    dateClass.change(function () {
+        console.log(dateClass.val())
+        console.log(dateClass.val().type)
+    })
+
+    const app = {
+        data() {
+            return {
+                originValue: "ShangHai",
+                destinationValue: "MoSiKe",
+                passengersType: "big",
+                departrueTime: curDay
+            }
+        },
+        methods: {
+            search: function () {
+                var params = new URLSearchParams();
+                params.append('originValue', this.originValue);
+                params.append('destinationValue', this.destinationValue);
+                params.append('passengersType', this.passengersType);
+                params.append('departrueTime', this.departrueTime);
+                axios.post('http://localhost:8080/main', params)
+                    .then(function (res) {
+                        console.log(res);
+                        window.document.location.href = "/search"
+                    })
+                    .catch(error => {
+                        alert(error);
+                    })
             }
         }
-        Vue.createApp(app).mount("#app");
-    </script>
+    }
+    Vue.createApp(app).mount("#app");
+</script>
 </body>
 
 </html>

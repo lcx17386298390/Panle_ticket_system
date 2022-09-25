@@ -7,14 +7,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.staticfile.org/vue/3.0.5/vue.global.js"></script>
-    <link rel="stylesheet" href="../myCSS/serch.css" type="text/css">
+    <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
     <title>搜索结果</title>
 </head>
 <body>
+    <div id="search">
+        <div id="branch1">
+            <!--左边部分信息-->
+            <div id="plane_mes">
+                <!--航空公司-->
+                <div id="airlines">
 
+                </div>
+                <div id="timeMes"></div>
+            </div>
+            <!--右边部分信息-->
+            <div id="price"></div>
+        </div>
+    </div>
     <script>
-        let ws = new WebSocket('ws://localhost:8080/search/webSocket')
+        const app = {
+            data(){
+                return{
 
+                }
+            }
+        }
+        let destinationValue
+        let departrueTime
+        let originValue
+        let passengersType
+
+        $(document).ready(
+            function(){
+                // let params = new URLSearchParams();
+                axios.post("http://localhost:8080/search")
+                .then(response =>{
+                    console.log(response)
+                    destinationValue = response.data
+                })
+                .catch(error =>{
+                    alert("有错误")
+                })
+            }
+        )
     </script>
 </body>
 </html>

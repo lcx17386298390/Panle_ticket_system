@@ -1,0 +1,9 @@
+.searchTable{
+    border-collapse: collapse;
+}
+.searchTable td,th{
+    border: 1px solid black;
+}
+.branch{
+    margin: 20px;
+}

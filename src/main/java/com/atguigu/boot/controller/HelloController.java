@@ -89,6 +89,7 @@ public class HelloController {
         //提取顾客提交的信息
         Map<String, String> ticketMap = (Map<String, String>) session.getAttribute("ticketMap");
         List<Ticket> ticket = ticketService.findTicket(ticketMap.get("originValue"),ticketMap.get("destinationValue"),ticketMap.get("departrueDate"));
+        System.out.println(ticket.toString());
         return ticket;
     }
 

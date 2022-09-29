@@ -14,26 +14,28 @@
 <div class="mainDiv1" id="app">
     出发地：<input type="text" v-model="originValue">
     目的地：<input type="text" v-model="destinationValue">
-    出发日期：<input type="date" class="dateClass">
+    出发日期：<input type="date" id="dateClass" v-bind:value="departrueTime">
     <div>
-        乘客类型<br>成人<input type="radio" name="people" value="big" v-model="passengersType">
+        乘客类型<br>
+        成人<input type="radio" name="people" value="big" v-model="passengersType">
         儿童<input type="radio" name="people" value="small" v-model="passengersType">
     </div>
     <button @click="search">搜索</button>
 </div>
 <script>
     let date = new Date()
-    let dateClass = $('.dateClass')
     let yyyy = date.getFullYear()
     let MM = (date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1)
     let dd = date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate()
     let curDay = yyyy + '-' + MM + '-' + dd;
-    dateClass.val(curDay)
-    dateClass.change(function () {
-        console.log(dateClass.val())
-        console.log(dateClass.val().type)
-    })
-
+    $('#dateClass').val(curDay)
+    $(document).ready(function () {
+            $('#dateClass').change(function () {
+                console.log($(this).val())
+                curDay = String($(this).val())
+            })
+        }
+    )
     const app = {
         data() {
             return {
@@ -49,7 +51,7 @@
                 params.append('originValue', this.originValue);
                 params.append('destinationValue', this.destinationValue);
                 params.append('passengersType', this.passengersType);
-                params.append('departrueTime', this.departrueTime);
+                params.append('departrueTime', curDay);
                 axios.post('http://localhost:8080/main', params)
                     .then(function (res) {
                         console.log(res);

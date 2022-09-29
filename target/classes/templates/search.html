@@ -5,32 +5,189 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../myCSS/search.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.staticfile.org/vue/3.0.5/vue.global.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
     <title>搜索结果</title>
 </head>
 <body>
+<div id="search">
+    <div id="branch1" class="branch">
+        <table class="searchTable">
+            <tr>
+                <th>航空公司信息</th>
+                <th>出发机场</th>
+                <th>到达机场</th>
+                <th>出发时间</th>
+                <th>到达时间</th>
+                <th>座位</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <th id="number1"></th>
+                <th id="originValue1"></th>
+                <th id="destinationValue1"></th>
+                <th id="departrueTime1"></th>
+                <th id="arrivalTime1"></th>
+                <th id="seat1"></th>
+                <th id="price1"></th>
+            </tr>
+        </table>
+        <button>选购</button>
+    </div>
+    <div id="branch2" class="branch">
+        <table class="searchTable">
+            <tr>
+                <th>航空公司信息</th>
+                <th>出发机场</th>
+                <th>到达机场</th>
+                <th>出发时间</th>
+                <th>到达时间</th>
+                <th>座位</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <th id="number2"></th>
+                <th id="originValue2"></th>
+                <th id="destinationValue2"></th>
+                <th id="departrueTime2"></th>
+                <th id="arrivalTime2"></th>
+                <th id="seat2"></th>
+                <th id="price2"></th>
+            </tr>
+        </table>
+        <button>选购</button>
+    </div>
+    <div id="branch3" class="branch">
+        <table class="searchTable">
+            <tr>
+                <th>航空公司信息</th>
+                <th>出发机场</th>
+                <th>到达机场</th>
+                <th>出发时间</th>
+                <th>到达时间</th>
+                <th>座位</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <th id="number3"></th>
+                <th id="originValue3"></th>
+                <th id="destinationValue3"></th>
+                <th id="departrueTime3"></th>
+                <th id="arrivalTime3"></th>
+                <th id="seat3"></th>
+                <th id="price3"></th>
+            </tr>
+        </table>
+        <button>选购</button>
+    </div>
+    <div id="branch4" class="branch">
+        <table class="searchTable">
+            <tr>
+                <th>航空公司信息</th>
+                <th>出发机场</th>
+                <th>到达机场</th>
+                <th>出发时间</th>
+                <th>到达时间</th>
+                <th>座位</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <th id="number4"></th>
+                <th id="originValue4"></th>
+                <th id="destinationValue4"></th>
+                <th id="departrueTime4"></th>
+                <th id="arrivalTime4"></th>
+                <th id="seat4"></th>
+                <th id="price4"></th>
+            </tr>
+        </table>
+        <button>选购</button>
+    </div>
+    <div id="branch5" class="branch">
+        <table class="searchTable">
+            <tr>
+                <th>航空公司信息</th>
+                <th>出发机场</th>
+                <th>到达机场</th>
+                <th>出发时间</th>
+                <th>到达时间</th>
+                <th>座位</th>
+                <th>价格</th>
+            </tr>
+            <tr>
+                <th id="number5"></th>
+                <th id="originValue5"></th>
+                <th id="destinationValue5"></th>
+                <th id="departrueTime5"></th>
+                <th id="arrivalTime5"></th>
+                <th id="seat5"></th>
+                <th id="price5"></th>
+            </tr>
+        </table>
+        <button>选购</button>
+    </div>
+</div>
+<script>
+    const app = {
+        data() {
+            return {}
+        }
+    }
 
-    <script>
-        let destinationValue
-        let departrueTime
-        let originValue
-        let passengersType
+    //航班号
+    let number
+    //出发地点
+    let originValue
+    //目的地
+    let destinationValue
+    //出发日期
+    let departureDate
+    //出发时间
+    let departrueTime
+    //到达日期
+    let arrivalDate
+    //到达时间
+    let arrivalTime
+    //乘客类型（暂时不用）
+    let passengersType
+    //机票价格
+    let price
+    //剩余座位
+    let seat
+    //返回的数据
+    let resMes
 
-        $(document).ready(
-            function(){
-                // let params = new URLSearchParams();
-                axios.post("http://localhost:8080/search")
-                .then(response =>{
+    $(document).ready(
+        function () {
+            // let params = new URLSearchParams();
+            axios.post("http://localhost:8080/search")
+                .then(response => {
                     console.log(response)
-                    destinationValue = response.data
+                    resMes = response.data
+                    let len = resMes.length;
+                    console.log(len)
+                    for(let i=1;i<=len;i++){
+                        document.getElementById("number"+i).innerText = resMes[i-1].number
+                        document.getElementById("originValue"+i).innerText = resMes[i-1].origin
+                        document.getElementById("destinationValue"+i).innerText = resMes[i-1].destination
+                        document.getElementById("departrueTime"+i).innerText = resMes[i-1].departureTime
+                        document.getElementById("arrivalTime"+i).innerText = resMes[i-1].arrivalTime
+                        document.getElementById("seat"+i).innerText = resMes[i-1].seat
+                        document.getElementById("price"+i).innerText = resMes[i-1].price
+                    }
+                    for(let i=1;i<=5;i++){
+                        if(document.getElementById("number"+i).innerText==null){
+                            document.getElementById("branch"+1).style.visibility='hidden';
+                        }
+                    }
                 })
-                .catch(error =>{
+                .catch(error => {
                     alert("有错误")
                 })
-            }
-        )
-    </script>
+        }
+    )
+</script>
 </body>
 </html>

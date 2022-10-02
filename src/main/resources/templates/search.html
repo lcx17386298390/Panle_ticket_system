@@ -16,13 +16,13 @@
     <div id="branch1" class="branch">
         <table class="searchTable">
             <tr>
-                <th>航空公司信息</th>
+                <th>航班号</th>
                 <th>出发机场</th>
                 <th>到达机场</th>
                 <th>出发时间</th>
                 <th>到达时间</th>
-                <th>座位</th>
-                <th>价格</th>
+                <th>经济舱</th>
+                <th>头等舱</th>
             </tr>
             <tr>
                 <th id="number1"></th>
@@ -30,22 +30,23 @@
                 <th id="destinationValue1"></th>
                 <th id="departrueTime1"></th>
                 <th id="arrivalTime1"></th>
-                <th id="seat1"></th>
-                <th id="price1"></th>
+                <th id="economySeat1"></th>
+                <th id="firstSeat1"></th>
             </tr>
         </table>
-        <button>选购</button>
+        <button onclick="btn(1)" class="button">选购</button>
+        <div id="buttonBuy1"></div>
     </div>
     <div id="branch2" class="branch">
         <table class="searchTable">
             <tr>
-                <th>航空公司信息</th>
+                <th>航班号</th>
                 <th>出发机场</th>
                 <th>到达机场</th>
                 <th>出发时间</th>
                 <th>到达时间</th>
-                <th>座位</th>
-                <th>价格</th>
+                <th>经济舱</th>
+                <th>头等舱</th>
             </tr>
             <tr>
                 <th id="number2"></th>
@@ -53,22 +54,22 @@
                 <th id="destinationValue2"></th>
                 <th id="departrueTime2"></th>
                 <th id="arrivalTime2"></th>
-                <th id="seat2"></th>
-                <th id="price2"></th>
+                <th id="economySeat2"></th>
+                <th id="firstSeat2"></th>
             </tr>
         </table>
-        <button>选购</button>
+        <button onclick="btn(2)" class="button">选购</button>
     </div>
     <div id="branch3" class="branch">
         <table class="searchTable">
             <tr>
-                <th>航空公司信息</th>
+                <th>航班号</th>
                 <th>出发机场</th>
                 <th>到达机场</th>
                 <th>出发时间</th>
                 <th>到达时间</th>
-                <th>座位</th>
-                <th>价格</th>
+                <th>经济舱</th>
+                <th>头等舱</th>
             </tr>
             <tr>
                 <th id="number3"></th>
@@ -76,22 +77,22 @@
                 <th id="destinationValue3"></th>
                 <th id="departrueTime3"></th>
                 <th id="arrivalTime3"></th>
-                <th id="seat3"></th>
-                <th id="price3"></th>
+                <th id="economySeat3"></th>
+                <th id="firstSeat3"></th>
             </tr>
         </table>
-        <button>选购</button>
+        <button onclick="btn(3)" class="button">选购</button>
     </div>
     <div id="branch4" class="branch">
         <table class="searchTable">
             <tr>
-                <th>航空公司信息</th>
+                <th>航班号</th>
                 <th>出发机场</th>
                 <th>到达机场</th>
                 <th>出发时间</th>
                 <th>到达时间</th>
-                <th>座位</th>
-                <th>价格</th>
+                <th>经济舱</th>
+                <th>头等舱</th>
             </tr>
             <tr>
                 <th id="number4"></th>
@@ -99,22 +100,22 @@
                 <th id="destinationValue4"></th>
                 <th id="departrueTime4"></th>
                 <th id="arrivalTime4"></th>
-                <th id="seat4"></th>
-                <th id="price4"></th>
+                <th id="4"></th>
+                <th id="firstSeat4"></th>
             </tr>
         </table>
-        <button>选购</button>
+        <button onclick="btn(4)" class="button">选购</button>
     </div>
     <div id="branch5" class="branch">
         <table class="searchTable">
             <tr>
-                <th>航空公司信息</th>
+                <th>航班号</th>
                 <th>出发机场</th>
                 <th>到达机场</th>
                 <th>出发时间</th>
                 <th>到达时间</th>
-                <th>座位</th>
-                <th>价格</th>
+                <th>经济舱</th>
+                <th>头等舱</th>
             </tr>
             <tr>
                 <th id="number5"></th>
@@ -122,18 +123,19 @@
                 <th id="destinationValue5"></th>
                 <th id="departrueTime5"></th>
                 <th id="arrivalTime5"></th>
-                <th id="seat5"></th>
-                <th id="price5"></th>
+                <th id="economySeat5"></th>
+                <th id="firstSeat5"></th>
             </tr>
         </table>
-        <button>选购</button>
+        <button onclick="btn(5)" class="button">选购</button>
     </div>
 </div>
 <script>
     const app = {
         data() {
             return {}
-        }
+        },
+        methods: {}
     }
 
     //航班号
@@ -167,27 +169,64 @@
                     console.log(response)
                     resMes = response.data
                     let len = resMes.length;
-                    console.log(len)
-                    for(let i=1;i<=len;i++){
-                        document.getElementById("number"+i).innerText = resMes[i-1].number
-                        document.getElementById("originValue"+i).innerText = resMes[i-1].origin
-                        document.getElementById("destinationValue"+i).innerText = resMes[i-1].destination
-                        document.getElementById("departrueTime"+i).innerText = resMes[i-1].departureTime
-                        document.getElementById("arrivalTime"+i).innerText = resMes[i-1].arrivalTime
-                        document.getElementById("seat"+i).innerText = resMes[i-1].seat
-                        document.getElementById("price"+i).innerText = resMes[i-1].price
+                    for (let i = 1; i <= len; i++) {
+                        document.getElementById("branch" + i).style.visibility = 'visible';
                     }
-                    for(let i=1;i<=5;i++){
-                        if(document.getElementById("number"+i).innerText==null){
-                            document.getElementById("branch"+1).style.visibility='hidden';
+                    for (let i = 1; i <= len; i++) {
+                        document.getElementById("number" + i).innerText = resMes[i - 1].number
+                        document.getElementById("originValue" + i).innerText = resMes[i - 1].origin
+                        document.getElementById("destinationValue" + i).innerText = resMes[i - 1].destination
+                        document.getElementById("departrueTime" + i).innerText = resMes[i - 1].departureTime
+                        document.getElementById("arrivalTime" + i).innerText = resMes[i - 1].arrivalTime
+                        let economySeat = resMes[i - 1].economySeat
+                        let firstSeat = resMes[i - 1].firstSeat
+                        if(economySeat!==0){
+                            document.getElementById("economySeat" + i).innerText = "有";
+                        }else{
+                            document.getElementById("economySeat" + i).innerText = "无";
                         }
+                        if(firstSeat!==0){
+                            document.getElementById("firstSeat" + i).innerText = "有";
+                        }else{
+                            document.getElementById("firstSeat" + i).innerText = "无";
+                        }
+                        // document.getElementById("economySeat" + i).innerText = resMes[i - 1].economySeat
+                        // document.getElementById("economyPrice" + i).innerText = resMes[i - 1].economyPrice
+                        // document.getElementById("firstSeat" + i).innerText = resMes[i - 1].firstSeat
+                        // document.getElementById("firstPrice" + i).innerText = resMes[i - 1].firstPrice
                     }
+                    // for(let i=1;i<=5;i++){
+                    //     console.log(document.getElementById("number"+i).innerText)
+                    //     if($('#number'+i).innerText==undefined||($('#number'+i).innerText=='')){
+                    //         document.getElementById("branch"+i).style.visibility='hidden';
+                    //     }
+                    // }
                 })
                 .catch(error => {
                     alert("有错误")
                 })
         }
     )
+
+    function btn(i) {
+        let number = resMes[i - 1].number
+        // let params = new URLSearchParams()
+        // //传入的是number航班号
+        // params.append('number', number)
+        // axios.post('http://localhost:8080/ticketBuyButton', params)
+        //     .then(function (response) {
+        //         console.log(response);
+        //         if(response.data==="error"){
+        //             alert("您已购买此航班或航班不存在")
+        //         }else{
+        //             alert("购买成功");
+        //         }
+        //     })
+        //     .catch(error => {
+        //         alert("有错误")
+        //     })
+        // window.document.location.href="http://localhost:8080/search?ticketNumber="+number
+    }
 </script>
 </body>
 </html>

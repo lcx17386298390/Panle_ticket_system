@@ -16,6 +16,11 @@ public class TicketService {
     public List<Ticket> findTicket(String origin, String destination, String departureDate) {
         return ticketMapper.findTicket(origin,destination,departureDate);
     }
+
+    //根据航班号查询飞机信息
+    public Ticket findTicketByNumber(String number){
+        return ticketMapper.finTicketByNumber(number);
+    }
 //    public Ticket findTicket(/*String origin, String destination, String departureTime*/) {
 ////        return ticketMapper.findTicket(origin, destination, departureTime);
 //        return ticketMapper.findTicket2();

@@ -20,10 +20,16 @@ public class Ticket {
     private Date arrivalDate;
     //到达时间
     private Time arrivalTime;
-    //机票价格
-    private Integer price;
-    //剩余座位数
-    private Integer seat;
+    //经济舱剩余座位数
+    private Integer economySeat;
+    //经济舱价格
+    private Integer economyPrice;
+    //经济舱剩余座位数
+    private Integer firstSeat;
+    //经济舱价格
+    private Integer firstPrice;
+
+
 
     public String getNumber() {
         return number;
@@ -81,20 +87,36 @@ public class Ticket {
         this.arrivalTime = arrivalTime;
     }
 
-    public Integer getPrice() {
-        return price;
+    public Integer getEconomySeat() {
+        return economySeat;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setEconomySeat(Integer economySeat) {
+        this.economySeat = economySeat;
     }
 
-    public Integer getSeat() {
-        return seat;
+    public Integer getEconomyPrice() {
+        return economyPrice;
     }
 
-    public void setSeat(Integer seat) {
-        this.seat = seat;
+    public void setEconomyPrice(Integer economyPrice) {
+        this.economyPrice = economyPrice;
+    }
+
+    public Integer getFirstSeat() {
+        return firstSeat;
+    }
+
+    public void setFirstSeat(Integer firstSeat) {
+        this.firstSeat = firstSeat;
+    }
+
+    public Integer getFirstPrice() {
+        return firstPrice;
+    }
+
+    public void setFirstPrice(Integer firstPrice) {
+        this.firstPrice = firstPrice;
     }
 
     @Override
@@ -107,8 +129,10 @@ public class Ticket {
                 ", departureTime=" + departureTime +
                 ", arrivalDate=" + arrivalDate +
                 ", arrivalTime=" + arrivalTime +
-                ", price=" + price +
-                ", seat=" + seat +
+                ", economySeat=" + economySeat +
+                ", economyPrice=" + economyPrice +
+                ", firstSeat=" + firstSeat +
+                ", firstPrice=" + firstPrice +
                 '}';
     }
 }

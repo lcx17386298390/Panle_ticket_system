@@ -2,8 +2,8 @@ package com.atguigu.boot.controller;
 
 //import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.alibaba.fastjson.JSON;
 import com.atguigu.boot.bean.Ticket;
+import com.atguigu.boot.service.MineService;
 import com.atguigu.boot.service.TicketService;
 import com.atguigu.boot.service.UserService;
 import com.atguigu.boot.webConfig.WebSocket;
@@ -29,6 +29,9 @@ public class HelloController {
 
     @Autowired
     TicketService ticketService;
+
+    @Autowired
+    MineService mineService;
 
     @GetMapping(value = "/")
     public String handle01(Model model, HttpSession session) {
@@ -111,4 +114,17 @@ public class HelloController {
         session.setAttribute("ticketMap", ticketMap);
         return "success";
     }
+
+//    @ResponseBody
+//    @PostMapping("/ticketBuyButton")
+//    public String ticketBuy(@RequestParam("number") String number){
+//
+//        //先查找选购的这个航班的信息，发送到选购页面
+//        Ticket ticket = ticketService.findTicketByNumber(number);
+//
+//
+//        //记得做一个条件判断，是否已经存在或者没有这个航班号所引起的故障
+//        String mes = mineService.addMineBuy(number);
+//        return mes;
+//    }
 }

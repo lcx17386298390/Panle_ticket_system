@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background: url("../myImages/Desert.jpg") no-repeat 0px 0px;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.presonChooise{
+    height: 280px;
+    width: 500px;
+    /*background-color: #aaaaaa;*/
+    /*70%的不透明度*/
+    background-color:rgba(0,152,50,0.7);
+
+}
+.spanDiv{
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    font-size: 24px;
+    height: 40px;
+}
+.list{
+    position: relative;
+    height: 40px;
+    //可以用作整行选中
+    display: flex;
+    flex-direction: column;
+}
+.list>label{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.list>label>span{
+    margin-left: 30%;
+}
+.listSubmit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.presonList{
+    width: 500px;
+    height: 200px;
+    overflow: auto;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+}
+.presonList::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 10px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+.presonList::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: #535353;
+}
+.presonList::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    background: #EDEDED;
+}
+/*提交按钮*/
+.button {
+    border-color: cornsilk;
+    background-color: rgba(100, 149, 237, .7);
+    color: aliceblue;
+    border-style: hidden;
+    border-radius: 5px;
+    width: 66px;
+    height: 31px;
+    font-size: 16px;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

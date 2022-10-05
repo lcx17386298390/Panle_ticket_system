@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../myCSS/main.css" type="text/css">
+    <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+    <script src="https://cdn.staticfile.org/vue/3.0.5/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>购票系统</title>
+</head>
+<body>
+<div class="mainDiv1" id="app">
+    出发地：<input type="text" v-model="originValue">
+    目的地：<input type="text" v-model="destinationValue">
+    出发日期：<input type="date" id="dateClass" v-bind:value="departrueTime">
+    <div>
+        乘客类型<br>
+        成人<input type="radio" name="people" value="big" v-model="passengersType">
+        儿童<input type="radio" name="people" value="small" v-model="passengersType">
+    </div>
+    <button @click="search">搜索</button>
+</div>
+<script>
+    let date = new Date()
+    let yyyy = date.getFullYear()
+    let MM = (date.getMonth() + 1) < 10 ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1)
+    let dd = date.getDate() < 10 ? ("0" + date.getDate()) : date.getDate()
+    let curDay = yyyy + '-' + MM + '-' + dd;
+    $('#dateClass').val(curDay)
+    $(document).ready(function () {
+            $('#dateClass').change(function () {
+                console.log($(this).val())
+                curDay = String($(this).val())
+            })
+        }
+    )
+    const app = {
+        data() {
+            return {
+                originValue: "ShangHai",
+                destinationValue: "MoSiKe",
+                passengersType: "big",
+                departrueTime: curDay
+            }
+        },
+        methods: {
+            search: function () {
+                var params = new URLSearchParams();
+                params.append('originValue', this.originValue);
+                params.append('destinationValue', this.destinationValue);
+                params.append('passengersType', this.passengersType);
+                params.append('departrueTime', curDay);
+                axios.post('http://localhost:8080/main', params)
+                    .then(function (res) {
+                        console.log(res);
+                        window.document.location.href = "/search"
+                    })
+                    .catch(error => {
+                        alert(error);
+                    })
+            }
+        }
+    }
+    Vue.createApp(app).mount("#app");
+</script>
+</body>
+
+</html>

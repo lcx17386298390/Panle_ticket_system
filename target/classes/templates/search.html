@@ -34,8 +34,21 @@
                 <th id="firstSeat1"></th>
             </tr>
         </table>
-        <button onclick="btn(1)" class="button">选购</button>
-        <div id="buttonBuy1"></div>
+        <div class="buttonDiv1">
+            <button onclick="btn(1)" class="button">选购</button>
+            <div class="buttonBuy1">
+                <div class="leftBuy">
+                    <span>经济舱</span>
+                    <span id="economyPrice1"></span>
+                    <button class="tableButton" onclick="economyBtn(1)">购买</button>
+                </div>
+                <div class="rightBuy">
+                    <span>头等舱</span>
+                    <span id="firstPrice1"></span>
+                    <button class="tableButton" onclick="firstBtn(1)">购买</button>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="branch2" class="branch">
         <table class="searchTable">
@@ -58,7 +71,21 @@
                 <th id="firstSeat2"></th>
             </tr>
         </table>
-        <button onclick="btn(2)" class="button">选购</button>
+        <div class="buttonDiv2">
+            <button onclick="btn(2)" class="button">选购</button>
+            <div class="buttonBuy2">
+                <div class="leftBuy">
+                    <span>经济舱</span>
+                    <span id="economyPrice2"></span>
+                    <button class="tableButton">购买</button>
+                </div>
+                <div class="rightBuy">
+                    <span>头等舱</span>
+                    <span id="firstPrice2"></span>
+                    <button class="tableButton">购买</button>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="branch3" class="branch">
         <table class="searchTable">
@@ -81,7 +108,21 @@
                 <th id="firstSeat3"></th>
             </tr>
         </table>
-        <button onclick="btn(3)" class="button">选购</button>
+        <div class="buttonDiv3">
+            <button onclick="btn(3)" class="button">选购</button>
+            <div class="buttonBuy3">
+                <div class="leftBuy">
+                    <span>经济舱</span>
+                    <span id="economyPrice3"></span>
+                    <button class="tableButton">购买</button>
+                </div>
+                <div class="rightBuy">
+                    <span>头等舱</span>
+                    <span id="firstPrice3"></span>
+                    <button class="tableButton">购买</button>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="branch4" class="branch">
         <table class="searchTable">
@@ -100,11 +141,25 @@
                 <th id="destinationValue4"></th>
                 <th id="departrueTime4"></th>
                 <th id="arrivalTime4"></th>
-                <th id="4"></th>
+                <th id="economySeat4"></th>
                 <th id="firstSeat4"></th>
             </tr>
         </table>
-        <button onclick="btn(4)" class="button">选购</button>
+        <div class="buttonDiv4">
+            <button onclick="btn(4)" class="button">选购</button>
+            <div class="buttonBuy4">
+                <div class="leftBuy">
+                    <span>经济舱</span>
+                    <span id="economyPrice4"></span>
+                    <button class="tableButton">购买</button>
+                </div>
+                <div class="rightBuy">
+                    <span>头等舱</span>
+                    <span id="firstPrice4"></span>
+                    <button class="tableButton">购买</button>
+                </div>
+            </div>
+        </div>
     </div>
     <div id="branch5" class="branch">
         <table class="searchTable">
@@ -127,37 +182,28 @@
                 <th id="firstSeat5"></th>
             </tr>
         </table>
-        <button onclick="btn(5)" class="button">选购</button>
+        <div class="buttonDiv5">
+            <button onclick="btn(5)" class="button">选购</button>
+            <div class="buttonBuy5">
+                <div class="leftBuy">
+                    <span>经济舱</span>
+                    <span id="economyPrice5"></span>
+                    <button class="tableButton">购买</button>
+                </div>
+                <div class="rightBuy">
+                    <span>头等舱</span>
+                    <span id="firstPrice5"></span>
+                    <button class="tableButton">购买</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script>
-    const app = {
-        data() {
-            return {}
-        },
-        methods: {}
-    }
-
-    //航班号
-    let number
-    //出发地点
-    let originValue
-    //目的地
-    let destinationValue
-    //出发日期
-    let departureDate
-    //出发时间
-    let departrueTime
-    //到达日期
-    let arrivalDate
-    //到达时间
-    let arrivalTime
-    //乘客类型（暂时不用）
-    let passengersType
-    //机票价格
-    let price
-    //剩余座位
-    let seat
+    //经济舱价格
+    let economyPrice = new Array()
+    //头等舱价格
+    let firstPrice = new Array()
     //返回的数据
     let resMes
 
@@ -173,43 +219,39 @@
                         document.getElementById("branch" + i).style.visibility = 'visible';
                     }
                     for (let i = 1; i <= len; i++) {
+                        document.getElementById("economyPrice" + i).innerText = "¥" + resMes[i - 1].economyPrice
+                        document.getElementById("firstPrice" + i).innerText = "¥" + resMes[i - 1].firstPrice
                         document.getElementById("number" + i).innerText = resMes[i - 1].number
-                        document.getElementById("originValue" + i).innerText = resMes[i - 1].origin
-                        document.getElementById("destinationValue" + i).innerText = resMes[i - 1].destination
+                        document.getElementById("originValue" + i).innerText = resMes[i - 1].originAirport
+                        document.getElementById("destinationValue" + i).innerText = resMes[i - 1].destinationAirport
                         document.getElementById("departrueTime" + i).innerText = resMes[i - 1].departureTime
                         document.getElementById("arrivalTime" + i).innerText = resMes[i - 1].arrivalTime
                         let economySeat = resMes[i - 1].economySeat
                         let firstSeat = resMes[i - 1].firstSeat
-                        if(economySeat!==0){
+
+                        if (economySeat !== 0) {
                             document.getElementById("economySeat" + i).innerText = "有";
-                        }else{
+                        } else {
                             document.getElementById("economySeat" + i).innerText = "无";
                         }
-                        if(firstSeat!==0){
+                        if (firstSeat !== 0) {
                             document.getElementById("firstSeat" + i).innerText = "有";
-                        }else{
+                        } else {
                             document.getElementById("firstSeat" + i).innerText = "无";
                         }
-                        // document.getElementById("economySeat" + i).innerText = resMes[i - 1].economySeat
-                        // document.getElementById("economyPrice" + i).innerText = resMes[i - 1].economyPrice
-                        // document.getElementById("firstSeat" + i).innerText = resMes[i - 1].firstSeat
-                        // document.getElementById("firstPrice" + i).innerText = resMes[i - 1].firstPrice
                     }
-                    // for(let i=1;i<=5;i++){
-                    //     console.log(document.getElementById("number"+i).innerText)
-                    //     if($('#number'+i).innerText==undefined||($('#number'+i).innerText=='')){
-                    //         document.getElementById("branch"+i).style.visibility='hidden';
-                    //     }
-                    // }
                 })
                 .catch(error => {
+                    console.log(error)
                     alert("有错误")
                 })
         }
     )
 
-    function btn(i) {
-        let number = resMes[i - 1].number
+    //购买经济舱按钮
+    function economyBtn(i) {
+        //航班序列号
+        let serialNumber = resMes[i - 1].serialNumber
         // let params = new URLSearchParams()
         // //传入的是number航班号
         // params.append('number', number)
@@ -226,7 +268,29 @@
         //         alert("有错误")
         //     })
         // window.document.location.href="http://localhost:8080/search?ticketNumber="+number
+        let ticketType = "economySeat"
+        //点击后跳转一个新页面，并且将购买的飞机序列号和机票类型直接放在路径上
+        window.document.location.href="http://localhost:8080/buy?serialNumber="+serialNumber+"&ticketType="+ticketType
     }
+
+    //购买头等舱按钮
+    function firstBtn(i) {
+        let serialNumber = resMes[i - 1].serialNumber
+        //头等舱
+        let ticketType = "firstSeat"
+        window.document.location.href="http://localhost:8080/buy?serialNumber="+serialNumber+"&ticketType="+ticketType
+    }
+
+    // const app = {
+    //     data() {
+    //         return {
+    //         }
+    //     },
+    //     methods:{
+    //
+    //     }
+    // }
+    // Vue.createApp(app).mount("#search");
 </script>
 </body>
 </html>

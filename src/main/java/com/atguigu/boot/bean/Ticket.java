@@ -2,7 +2,6 @@ package com.atguigu.boot.bean;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
 
 //将机票封装成一个类
 public class Ticket {
@@ -12,6 +11,10 @@ public class Ticket {
     private String origin;
     //目的地
     private String destination;
+    //出发机场
+    private String originAirport;
+    //目的地机场
+    private String destinationAirport;
     //出发日期
     private Date departureDate;
     //出发时间
@@ -24,11 +27,16 @@ public class Ticket {
     private Integer economySeat;
     //经济舱价格
     private Integer economyPrice;
-    //经济舱剩余座位数
+    //经济舱开始座位号
+    private Integer ecoBeginNumber;
+    //商务舱剩余座位数
     private Integer firstSeat;
-    //经济舱价格
+    //商务舱价格
     private Integer firstPrice;
-
+    //商务舱开始座位号
+    private Integer firBeginNumber;
+    //航班唯一序列号
+    private String serialNumber;
 
 
     public String getNumber() {
@@ -119,20 +127,65 @@ public class Ticket {
         this.firstPrice = firstPrice;
     }
 
+    public String getOriginAirport() {
+        return originAirport;
+    }
+
+    public void setOriginAirport(String originAirport) {
+        this.originAirport = originAirport;
+    }
+
+    public String getDestinationAirport() {
+        return destinationAirport;
+    }
+
+    public void setDestinationAirport(String destinationAirport) {
+        this.destinationAirport = destinationAirport;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public Integer getEcoBeginNumber() {
+        return ecoBeginNumber;
+    }
+
+    public void setEcoBeginNumber(Integer ecoBeginNumber) {
+        this.ecoBeginNumber = ecoBeginNumber;
+    }
+
+    public Integer getFirBeginNumber() {
+        return firBeginNumber;
+    }
+
+    public void setFirBeginNumber(Integer firBeginNumber) {
+        this.firBeginNumber = firBeginNumber;
+    }
+
     @Override
     public String toString() {
         return "Ticket{" +
                 "number='" + number + '\'' +
                 ", origin='" + origin + '\'' +
                 ", destination='" + destination + '\'' +
+                ", originAirport='" + originAirport + '\'' +
+                ", destinationAirport='" + destinationAirport + '\'' +
                 ", departureDate=" + departureDate +
                 ", departureTime=" + departureTime +
                 ", arrivalDate=" + arrivalDate +
                 ", arrivalTime=" + arrivalTime +
                 ", economySeat=" + economySeat +
                 ", economyPrice=" + economyPrice +
+                ", ecoBeginNumber=" + ecoBeginNumber +
                 ", firstSeat=" + firstSeat +
                 ", firstPrice=" + firstPrice +
+                ", firBeginNumber=" + firBeginNumber +
+                ", serialNumber='" + serialNumber + '\'' +
                 '}';
     }
 }

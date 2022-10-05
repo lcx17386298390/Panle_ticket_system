@@ -25,7 +25,7 @@ public class UserService {
         }
     }
 
-    public void addUser(String username, String userpaw) {
-        userMapper.addUser(username, userpaw);
+    public void addUser(String username, String userpaw, String personName, String personId, String sex, String phone, String email) {
+        userMapper.addUser(username, userpaw, personName, personId, sex, phone, email);
     }
 }

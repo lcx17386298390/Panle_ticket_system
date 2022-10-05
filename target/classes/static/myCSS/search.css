@@ -1,17 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background: url("../myImages/Desert.jpg") no-repeat 0px 0px;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+}
+
 body{
     width: 100%;
     height: 100%;
 }
-
 .searchTable{
     border-collapse: collapse;
 }
 .searchTable td,th{
     border: 1px solid black;
 }
+.buttonDiv{
+    height: 50px;
+}
 .branch{
     width: 100%;
-    margin: 20px;
+    height: 100px;
+    margin: 20px 20px 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -30,12 +49,117 @@ body{
     height: 31px;
     font-size: 16px;
     margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
-#buttonBuy1{
-    background-color: red;
-    height: 300px;
-    width: 100%;
+#branch1{
+    position: relative;
 }
-.button:hover{
-
+.buttonBuy1{
+    position: absolute;
+    transition: all .4s;
+    left: 32%;
+    top: 75px;
+    height: 0;
+    width: 38%;
+    z-index: 999;
+    overflow: hidden;
+    /*background-color: #f0edf3;*/
+    box-shadow: 0 1px 5px #aaa;
+}
+.buttonDiv1:hover>.buttonBuy1 {
+    height: 60px;
+}
+#branch2{
+    position: relative;
+}
+.buttonBuy2{
+    position: absolute;
+    transition: all .4s;
+    left: 32%;
+    top: 75px;
+    height: 0;
+    width: 38%;
+    z-index: 999;
+    overflow: hidden;
+    /*background-color: #f0edf3;*/
+    box-shadow: 0 1px 5px #aaa;
+}
+.buttonDiv2:hover>.buttonBuy2{
+    height: 60px;
+}
+#branch3{
+     position: relative;
+ }
+.buttonBuy3{
+    position: absolute;
+    transition: all .4s;
+    left: 32%;
+    top: 75px;
+    height: 0;
+    width: 38%;
+    z-index: 999;
+    /*background-color: #f0edf3;*/
+    box-shadow: 0 1px 5px #aaa;
+    overflow: hidden;
+}
+.buttonDiv3:hover>.buttonBuy3{
+    height: 60px;
+}
+#branch4{
+     position: relative;
+}
+.buttonBuy4{
+    position: absolute;
+    transition: all .4s;
+    left: 32%;
+    top: 75px;
+    height: 0;
+    width: 38%;
+    overflow: hidden;
+    z-index: 999;
+    /*background-color: #f0edf3;*/
+    box-shadow: 0 1px 5px #aaa;
+}
+.buttonDiv4:hover>.buttonBuy4{
+    height: 60px;
+}
+#branch5{
+     position: relative;
+ }
+.buttonBuy5{
+    position: absolute;
+    transition: all .4s;
+    left: 32%;
+    top: 75px;
+    height: 0;
+    width: 38%;
+    overflow: hidden;
+    z-index: 999;
+    /*background-color: #f0edf3;*/
+    box-shadow: 0 1px 5px #aaa;
+}
+.buttonDiv5:hover>.buttonBuy5{
+    height: 60px;
+}
+.leftBuy,.rightBuy{
+    height: 30px;
+}
+.leftBuy>span{
+    margin-right: 25%;
+}
+.rightBuy>span{
+    margin-right: 25%;
+}
+.tableButton{
+    position: absolute;
+    border-color: cornsilk;
+    background-color: rgba(100, 149, 237, .7);
+    color: aliceblue;
+    border-style: hidden;
+    border-radius: 5px;
+    width: 50px;
+    height: 28px;
+    font-size: 16px;
+    right: 0;
 }

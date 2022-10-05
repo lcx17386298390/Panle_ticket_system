@@ -3,19 +3,20 @@ package com.atguigu.boot.controller;
 //import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.atguigu.boot.bean.Ticket;
+import com.atguigu.boot.bean.mypassengers;
 import com.atguigu.boot.service.MineService;
+import com.atguigu.boot.service.MyPassengersService;
 import com.atguigu.boot.service.TicketService;
 import com.atguigu.boot.service.UserService;
 import com.atguigu.boot.webConfig.WebSocket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,9 @@ public class HelloController {
 
     @Autowired
     MineService mineService;
+
+    @Autowired
+    MyPassengersService myPassengersService;
 
     @GetMapping(value = "/")
     public String handle01(Model model, HttpSession session) {
@@ -69,8 +73,15 @@ public class HelloController {
     }
 
     @PostMapping("registered")
-    public String regfun(HttpSession session, @RequestParam("username") String name, @RequestParam("password") String paw) {
-        userService.addUser(name, paw);
+    public String regfun(HttpSession session,
+                         @RequestParam("username") String name,
+                         @RequestParam("password") String paw,
+                         @RequestParam("personName") String personName,
+                         @RequestParam("personId") String personId,
+                         @RequestParam("sex") String sex,
+                         @RequestParam("email") String email,
+                         @RequestParam("phone") String phone) {
+        userService.addUser(name, paw, personName, personId, sex, phone, email);
         return "redirect:/regSuccess";
     }
 
@@ -91,7 +102,7 @@ public class HelloController {
     public List<Ticket> searchFun2(HttpSession session) {
         //提取顾客提交的信息
         Map<String, String> ticketMap = (Map<String, String>) session.getAttribute("ticketMap");
-        List<Ticket> ticket = ticketService.findTicket(ticketMap.get("originValue"),ticketMap.get("destinationValue"),ticketMap.get("departrueDate"));
+        List<Ticket> ticket = ticketService.findTicket(ticketMap.get("originValue"), ticketMap.get("destinationValue"), ticketMap.get("departrueDate"));
         System.out.println(ticket.toString());
         return ticket;
     }
@@ -115,16 +126,42 @@ public class HelloController {
         return "success";
     }
 
-//    @ResponseBody
-//    @PostMapping("/ticketBuyButton")
-//    public String ticketBuy(@RequestParam("number") String number){
-//
-//        //先查找选购的这个航班的信息，发送到选购页面
-//        Ticket ticket = ticketService.findTicketByNumber(number);
-//
-//
-//        //记得做一个条件判断，是否已经存在或者没有这个航班号所引起的故障
-//        String mes = mineService.addMineBuy(number);
-//        return mes;
-//    }
+    @ResponseBody
+    @PostMapping("/ticketBuyButton")
+    public String ticketBuy(@RequestParam("buyTicketSerialNumber") String buyTicketSerialNumber,
+                            @RequestParam("passengerName") String passengerName,
+                            @RequestParam("passengerId") String passengerId,
+                            @RequestParam("seatNumber") String seatNumber,
+                            @RequestParam("seatType") String seatType,
+                            @RequestParam("holdder") String holdder){
+
+        //先查找选购的这个航班的信息，发送到选购页面
+        Ticket ticket = ticketService.findTicketByNumber(buyTicketSerialNumber);
+
+
+        //记得做一个条件判断，是否已经存在或者没有这个航班号所引起的故障
+        String mes = mineService.addMineBuy(buyTicketSerialNumber, passengerName, passengerId, seatNumber, seatType, holdder);
+        return mes;
+    }
+
+    //购买页面
+    @GetMapping("/buy")
+    public String buyFun(){
+        return "buy";
+    }
+
+    //点击购买成功，修改数据库并跳转到主页面
+    @ResponseBody
+    @PostMapping("/buy")
+    public String buyFun2(@RequestParam("passengersId")String[] passengersIds,@RequestParam("serialNumber")String serialNumber,@RequestParam("ticketType")String ticketType){
+        System.out.println(Arrays.toString(passengersIds)+"+"+serialNumber+"+"+ticketType);
+        return "ok";
+    }
+
+    //返回自己库的人员列表
+    @ResponseBody
+    @PostMapping("passengersList")
+    public List<mypassengers> passengersList(){
+        return myPassengersService.getPassengers();
+    }
 }

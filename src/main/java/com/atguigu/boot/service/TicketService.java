@@ -18,8 +18,8 @@ public class TicketService {
     }
 
     //根据航班号查询飞机信息
-    public Ticket findTicketByNumber(String number){
-        return ticketMapper.finTicketByNumber(number);
+    public Ticket findTicketByNumber(String serialNumber){
+        return ticketMapper.finTicketByNumber(serialNumber);
     }
 //    public Ticket findTicket(/*String origin, String destination, String departureTime*/) {
 ////        return ticketMapper.findTicket(origin, destination, departureTime);

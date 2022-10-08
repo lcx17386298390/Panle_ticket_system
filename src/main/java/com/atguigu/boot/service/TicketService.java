@@ -2,6 +2,7 @@ package com.atguigu.boot.service;
 
 import com.atguigu.boot.bean.Ticket;
 import com.atguigu.boot.mapper.TicketMapper;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,15 @@ public class TicketService {
     public Ticket findTicketByNumber(String serialNumber){
         return ticketMapper.finTicketByNumber(serialNumber);
     }
-//    public Ticket findTicket(/*String origin, String destination, String departureTime*/) {
-////        return ticketMapper.findTicket(origin, destination, departureTime);
-//        return ticketMapper.findTicket2();
-//    }
+
+    //购买票后修改经济舱开始座位号和座位总数
+    public void setEconmyTicket(Integer econmySeat,Integer ecoBeginNumber,String serialNumber){
+        ticketMapper.setEconmyTicket(econmySeat,ecoBeginNumber,serialNumber);
+    }
+
+    //购买票后修改商务舱开始座位号和座位总数
+    public void setfirstTicket(Integer firstSeat,Integer firBeginNumber,String serialNumber){
+        ticketMapper.setfirstTicket(firstSeat,firBeginNumber,serialNumber);
+    }
+
 }

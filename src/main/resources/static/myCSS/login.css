@@ -76,3 +76,12 @@ span{
     color: red;
     font-size: 14px;
 }
+.iframeDiv{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.iframeDiv>iframe{
+    border-width: 0;
+    overflow: hidden;
+}

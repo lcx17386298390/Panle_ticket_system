@@ -4,23 +4,27 @@
     <meta charset="UTF-8">
     <title>乘客选择</title>
     <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/jquery.form/4.2.1/jquery.form.js"></script>
     <script src="https://cdn.staticfile.org/vue/3.0.5/vue.global.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="../myCSS/buy.css" type="text/css">
 </head>
 <body>
+<div class="iframeDiv">
+    <iframe frameboder="no" width="100%" height="800" src="/mine" ></iframe>
+</div>
 <div id="app">
     <div class="presonChooise">
         <div class="spanDiv">
             <span>乘客选择</span>
         </div>
-        <form action="/buy" method="post">
+        <form id="buyForm" method="post">
             <div class="presonList" id="presonList">
                 <input type="text" id="serialNumber" name="serialNumber" style="display: none">
                 <input type="text" id="ticketType" name="ticketType" style="display: none">
             </div>
             <div class="listSubmit">
-                <input type="submit" value="确认购买" class="button">
+                <input type="button" value="确认购买" class="button" onclick="buyFun()">
             </div>
         </form>
     </div>
@@ -29,32 +33,52 @@
 <script>
     //返回的数据
     let resMes
+    let passengersId=new Array()
+    let serialNumber
+    let ticketType
+
     $(document).ready(
-        function (){
+        function () {
             axios.post("http://localhost:8080/passengersList")
-            .then(function (response){
-                console.log(response)
-                resMes = response.data
-                //返回人员个数
-                let len = resMes.length
-                //获取div父元素
-                let lists = document.getElementById("presonList");
-                for(let i=1;i<=len;i++){
-                    let div = document.createElement("div")
-                    div.className="list"
-                    div.innerHTML="<label><input type=\"checkbox\" name='passengersId' value='"+resMes[i-1].passengersId+"'><span>"+resMes[i-1].passengerName+"</span><span>"+resMes[i-1].passengersId+"</span></label>"
-                    lists.appendChild(div)
-                    console.log()
-                }
-            })
-            .catch(error=>{
-                alert("有错误");
-                console.log(error);
-            })
+                .then(function (response) {
+                    console.log(response)
+                    resMes = response.data
+                    //返回人员个数
+                    let len = resMes.length
+                    //获取div父元素
+                    let lists = document.getElementById("presonList");
+                    for (let i = 1; i <= len; i++) {
+                        passengersId[i-1]=resMes[i-1].passengersId
+                        let div = document.createElement("div")
+                        div.className = "list"
+                        div.innerHTML = "<label><input type=\"checkbox\" name='passengersId' value='" + resMes[i - 1].passengerId + "'><span class='spanName'>" + resMes[i - 1].passengerName + "</span><span class='spanId'>" + resMes[i-1].passengerId+"</span></label>"
+                        lists.appendChild(div)
+                    }
+                })
+                .catch(error => {
+                    alert("有错误");
+                    console.log(error);
+                })
         }
     )
+    function buyFun(){
+        $('#buyForm').ajaxSubmit({
+            type: "post",
+            url: "/buy",
+            data:{
+                'passengersId':passengersId
+            },
+            success: function (response){
+                alert(response+"正在跳转页面")
+                setTimeout("window.document.location.href='http://localhost:8080/mainIndex'")
+            }
+        })
+    }
+
+
+
     let path = location.search.split("?")[1]
-    let prames = (path||'').split('&')
+    let prames = (path || '').split('&')
     let obj = {}
     for (let i = 0; i < prames.length; i++) {
         let k = prames[i].split('=')

@@ -12,6 +12,14 @@ public interface TicketMapper {
     List<Ticket> findTicket(String origin, String destination, String departureTime);
 
     //购买时根据序列号来查找飞机票情况
-    @Select("select * from ticket where number=#{serialNumber}")
+    @Select("select * from ticket where serialNumber=#{serialNumber}")
     Ticket finTicketByNumber(String serialNumber);
+
+    //购买票后修改经济舱开始座位号和座位总数
+    @Select("update ticket set economySeat=#{economySeat},ecoBeginNumber=#{ecoBeginNumber} where serialNumber=#{serialNumber}")
+    void setEconmyTicket(Integer economySeat,Integer ecoBeginNumber,String serialNumber);
+
+    //购买票后修改商务舱开始座位号和座位总数
+    @Select("update ticket set firstSeat=#{firstSeat},firBeginNumber=#{firBeginNumber} where serialNumber=#{serialNumber}")
+    void setfirstTicket(Integer firstSeat,Integer firBeginNumber,String serialNumber);
 }

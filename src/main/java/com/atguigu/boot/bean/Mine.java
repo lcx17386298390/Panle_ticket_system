@@ -14,7 +14,48 @@ public class Mine {
     //座位类型
     private String seatType;
     //拥有者（暂时省略）
-    private String holdder;
+    private String holder;
+    //出发时间
+    private String departureTime;
+
+    public String getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(String departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public String getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public void setArrivalTime(String arrivalTime) {
+        this.arrivalTime = arrivalTime;
+    }
+
+    //到达时间
+    private String arrivalTime;
+
+
+    public String getHolder() {
+        return holder;
+    }
+
+    public void setHolder(String holder) {
+        this.holder = holder;
+    }
+
+    public String getTicketNumber() {
+        return ticketNumber;
+    }
+
+    public void setTicketNumber(String ticketNumber) {
+        this.ticketNumber = ticketNumber;
+    }
+
+    //飞机航次
+    private String ticketNumber;
 
     public String getBuyTicketSerialNumber() {
         return buyTicketSerialNumber;
@@ -56,13 +97,6 @@ public class Mine {
         this.seatType = seatType;
     }
 
-    public String getHoldder() {
-        return holdder;
-    }
-
-    public void setHoldder(String holdder) {
-        this.holdder = holdder;
-    }
 
     @Override
     public String toString() {
@@ -72,7 +106,10 @@ public class Mine {
                 ", passengerId='" + passengerId + '\'' +
                 ", seatNumber='" + seatNumber + '\'' +
                 ", seatType='" + seatType + '\'' +
-                ", holdder='" + holdder + '\'' +
+                ", holder='" + holder + '\'' +
+                ", departureTime='" + departureTime + '\'' +
+                ", arrivalTime='" + arrivalTime + '\'' +
+                ", ticketNumber='" + ticketNumber + '\'' +
                 '}';
     }
 }

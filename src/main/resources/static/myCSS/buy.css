@@ -25,7 +25,6 @@ body {
     width: 500px;
     /*background-color: #aaaaaa;*/
     /*70%的不透明度*/
-    background-color:rgba(0,152,50,0.7);
 
 }
 .spanDiv{
@@ -42,15 +41,17 @@ body {
     display: flex;
     flex-direction: column;
 }
+/*.list>label{*/
+/*    position: absolute;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*}*/
 .list>label{
     position: absolute;
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-}
-.list>label>span{
-    margin-left: 30%;
 }
 .listSubmit{
     display: flex;
@@ -95,4 +96,21 @@ body {
     margin-left: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+.iframeDiv{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.iframeDiv>iframe{
+    border-width: 0;
+    overflow: hidden;
+}
+.spanName{
+    position: absolute;
+    left: 30%;
+}
+.spanId{
+    position: absolute;
+    left: 70%;
 }

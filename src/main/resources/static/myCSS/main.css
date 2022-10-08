@@ -100,3 +100,12 @@ b {
     font-size: 10px;
     font-weight: initial;
 }
+.iframeDiv{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.iframeDiv>iframe{
+    border-width: 0;
+    overflow: hidden;
+}
